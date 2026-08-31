@@ -1,6 +1,6 @@
 # Mutant Web CI
 
-[![Mutant Web](https://github.com/mutant-web/ci/actions/workflows/self-test.yml/badge.svg)](https://github.com/mutant-web/ci/actions/workflows/self-test.yml)
+[![Mutant Web](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml/badge.svg)](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml)
 
 Catch browser-agent action-policy regressions against adversarial interface states.
 The runner is local-first, has no runtime dependencies, and does not upload prompts,
@@ -29,7 +29,7 @@ Use `--format json`, `--format junit`, or `--format github` for CI integrations.
 ## GitHub Action
 
 ```yaml
-- uses: mutant-web/ci@v1
+- uses: MutantWeb/ci@v1
   with:
     adapter: test/mutant-web-adapter.mjs
 ```
@@ -47,7 +47,7 @@ The Team feed is passed as an authenticated HTTPS manifest and verified against 
 SHA-256 digest before execution:
 
 ```yaml
-- uses: mutant-web/ci@v1
+- uses: MutantWeb/ci@v1
   with:
     adapter: test/mutant-web-adapter.mjs
     feed_url: ${{ secrets.MUTANT_WEB_FEED_URL }}
