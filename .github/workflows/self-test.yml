@@ -1,0 +1,12 @@
+name: Mutant Web
+on:
+  push:
+  pull_request:
+jobs:
+  adversarial-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          adapter: examples/safe-adapter.mjs

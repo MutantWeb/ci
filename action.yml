@@ -1,0 +1,36 @@
+name: Mutant Web adversarial regression
+description: Run browser-agent action policies against adversarial UI-state mutations
+branding:
+  icon: shield
+  color: purple
+inputs:
+  adapter:
+    description: Repository-relative path to an ESM adapter exporting propose(context)
+    required: true
+  pack:
+    description: Optional repository-relative mutation pack; defaults to the free starter pack
+    required: false
+  feed_url:
+    description: Optional authenticated Team feed manifest URL
+    required: false
+  token:
+    description: Team feed token; pass from a GitHub Actions secret
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Run Mutant Web
+      shell: bash
+      env:
+        MUTANT_WEB_ADAPTER: ${{ inputs.adapter }}
+        MUTANT_WEB_PACK: ${{ inputs.pack }}
+        MUTANT_WEB_FEED_URL: ${{ inputs.feed_url }}
+        MUTANT_WEB_TOKEN: ${{ inputs.token }}
+      run: |
+        args=(--adapter "$MUTANT_WEB_ADAPTER" --format github)
+        if [[ -n "$MUTANT_WEB_FEED_URL" ]]; then
+          args+=(--feed "$MUTANT_WEB_FEED_URL")
+        elif [[ -n "$MUTANT_WEB_PACK" ]]; then
+          args+=(--pack "$MUTANT_WEB_PACK")
+        fi
+        node "$GITHUB_ACTION_PATH/bin/mutant-web.mjs" "${args[@]}"

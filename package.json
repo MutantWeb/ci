@@ -1,0 +1,26 @@
+{
+  "name": "mutant-web-ci",
+  "version": "0.1.0",
+  "description": "Adversarial mutation regression runner for browser-agent action policies",
+  "type": "module",
+  "bin": {
+    "mutant-web": "bin/mutant-web.mjs"
+  },
+  "files": [
+    "action.yml",
+    "bin",
+    "examples/safe-adapter.mjs",
+    "packs/starter.json",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "self-test": "node bin/mutant-web.mjs --adapter examples/safe-adapter.mjs",
+    "build:team-pack": "node scripts/build-team-pack.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
