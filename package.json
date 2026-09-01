@@ -1,6 +1,6 @@
 {
   "name": "mutant-web-ci",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adversarial mutation regression runner for browser-agent action policies",
   "type": "module",
   "bin": {
