@@ -50,8 +50,20 @@ SHA-256 digest before execution:
 - uses: MutantWeb/ci@v1
   with:
     adapter: test/mutant-web-adapter.mjs
-    feed_url: ${{ secrets.MUTANT_WEB_FEED_URL }}
+    feed_url: https://mutant-web-bench.axayoxo.chatgpt.site/api/feed/manifest
     token: ${{ secrets.MUTANT_WEB_TOKEN }}
 ```
+
+After checkout, activate the Lemon Squeezy license once for each repository. The
+activation endpoint returns one compound token to store as `MUTANT_WEB_TOKEN`:
+
+```sh
+curl -X POST https://mutant-web-bench.axayoxo.chatgpt.site/api/license/activate \
+  -H 'content-type: application/json' \
+  -d '{"license_key":"YOUR-LICENSE-KEY","instance_name":"owner/repository"}'
+```
+
+The feed validates the exact license instance and product on access. Subscription
+expiry therefore stops future pack downloads without invalidating an already cached pack.
 
 Team access is described at [Mutant Web](https://mutant-web-bench.axayoxo.chatgpt.site/).
