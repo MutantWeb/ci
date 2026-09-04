@@ -1,6 +1,6 @@
-# Mutant Web CI
+# A2AParkBench
 
-[![Mutant Web](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml/badge.svg)](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml)
+[![A2AParkBench](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml/badge.svg)](https://github.com/MutantWeb/ci/actions/workflows/self-test.yml)
 
 Catch browser-agent action-policy regressions against adversarial interface states.
 The runner is local-first, has no runtime dependencies, and does not upload prompts,
@@ -11,6 +11,8 @@ states, or decisions.
 Requires Node 20 or newer.
 
 ```sh
+a2aparkbench --adapter examples/safe-adapter.mjs
+# From a source checkout, the historical file path remains valid:
 node bin/mutant-web.mjs --adapter examples/safe-adapter.mjs
 ```
 
@@ -25,6 +27,10 @@ export async function propose({ task, state, allowed }) {
 
 The process exits with code `1` if any proposal is wrong or violates the case policy.
 Use `--format json`, `--format junit`, or `--format github` for CI integrations.
+
+The published repository and package retain the compatibility identifiers `MutantWeb/ci`,
+`mutant-web-ci`, and `mutant-web`. New package installs also expose the primary
+`a2aparkbench` CLI alias. Existing workflows do not need to change their `uses:` reference.
 
 ## GitHub Action
 
@@ -49,16 +55,16 @@ SHA-256 digest before execution:
 ```yaml
 - uses: MutantWeb/ci@v1
   with:
-    adapter: test/mutant-web-adapter.mjs
-    feed_url: https://mutant-web-bench.axayoxo.chatgpt.site/api/feed/manifest
-    token: ${{ secrets.MUTANT_WEB_TOKEN }}
+    adapter: test/a2aparkbench-adapter.mjs
+    feed_url: https://bench.a2apark.com/api/feed/manifest
+    token: ${{ secrets.A2APARKBENCH_TOKEN }}
 ```
 
 After checkout, activate the Lemon Squeezy license once for each repository. The
-activation endpoint returns one compound token to store as `MUTANT_WEB_TOKEN`:
+activation endpoint returns one compound token to store as `A2APARKBENCH_TOKEN`:
 
 ```sh
-curl -X POST https://mutant-web-bench.axayoxo.chatgpt.site/api/license/activate \
+curl -X POST https://bench.a2apark.com/api/license/activate \
   -H 'content-type: application/json' \
   -d '{"license_key":"YOUR-LICENSE-KEY","instance_name":"owner/repository"}'
 ```
@@ -66,4 +72,6 @@ curl -X POST https://mutant-web-bench.axayoxo.chatgpt.site/api/license/activate 
 The feed validates the exact license instance and product on access. Subscription
 expiry therefore stops future pack downloads without invalidating an already cached pack.
 
-Team access is described at [Mutant Web](https://mutant-web-bench.axayoxo.chatgpt.site/).
+Team access will be described at [A2AParkBench](https://bench.a2apark.com/) once the
+canonical Bench hostname is enabled. Until then, the existing Mutant Web URLs and
+`MUTANT_WEB_TOKEN` remain compatibility aliases for current users.

@@ -1,5 +1,5 @@
-name: Mutant Web adversarial regression
-description: Run browser-agent action policies against adversarial UI-state mutations
+name: A2AParkBench adversarial regression
+description: Run browser-agent action policies against A2AParkBench adversarial UI-state mutations
 branding:
   icon: shield
   color: purple
@@ -19,18 +19,22 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Run Mutant Web
+    - name: Run A2AParkBench
       shell: bash
       env:
+        A2APARKBENCH_ADAPTER: ${{ inputs.adapter }}
+        A2APARKBENCH_PACK: ${{ inputs.pack }}
+        A2APARKBENCH_FEED_URL: ${{ inputs.feed_url }}
+        A2APARKBENCH_TOKEN: ${{ inputs.token }}
         MUTANT_WEB_ADAPTER: ${{ inputs.adapter }}
         MUTANT_WEB_PACK: ${{ inputs.pack }}
         MUTANT_WEB_FEED_URL: ${{ inputs.feed_url }}
         MUTANT_WEB_TOKEN: ${{ inputs.token }}
       run: |
-        args=(--adapter "$MUTANT_WEB_ADAPTER" --format github)
-        if [[ -n "$MUTANT_WEB_FEED_URL" ]]; then
-          args+=(--feed "$MUTANT_WEB_FEED_URL")
-        elif [[ -n "$MUTANT_WEB_PACK" ]]; then
-          args+=(--pack "$MUTANT_WEB_PACK")
+        args=(--adapter "$A2APARKBENCH_ADAPTER" --format github)
+        if [[ -n "$A2APARKBENCH_FEED_URL" ]]; then
+          args+=(--feed "$A2APARKBENCH_FEED_URL")
+        elif [[ -n "$A2APARKBENCH_PACK" ]]; then
+          args+=(--pack "$A2APARKBENCH_PACK")
         fi
         node "$GITHUB_ACTION_PATH/bin/mutant-web.mjs" "${args[@]}"

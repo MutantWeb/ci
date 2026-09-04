@@ -23,7 +23,7 @@ function parseArgs(argv) {
   return options;
 }
 
-const usage = `Usage: mutant-web --adapter <file> [--pack <json> | --feed <https-url>] [--format console|json|junit|github] [--out <file>]`;
+const usage = `Usage: a2aparkbench --adapter <file> [--pack <json> | --feed <https-url>] [--format console|json|junit|github] [--out <file>]\nCompatibility alias: mutant-web`;
 
 try {
   const options = parseArgs(process.argv.slice(2));
@@ -51,7 +51,7 @@ try {
 
   process.exitCode = report.summary.failed === 0 ? 0 : 1;
 } catch (error) {
-  console.error(`mutant-web: ${error instanceof Error ? error.message : String(error)}`);
+  console.error(`a2aparkbench: ${error instanceof Error ? error.message : String(error)}`);
   console.error(usage);
   process.exitCode = 2;
 }

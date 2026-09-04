@@ -17,8 +17,8 @@ export function verifyPackText(packText, manifest) {
   return pack;
 }
 
-export async function fetchFeed(manifestUrl, token = process.env.MUTANT_WEB_TOKEN) {
-  if (!token) throw new Error('MUTANT_WEB_TOKEN is required for a private feed');
+export async function fetchFeed(manifestUrl, token = process.env.A2APARKBENCH_TOKEN ?? process.env.MUTANT_WEB_TOKEN) {
+  if (!token) throw new Error('A2APARKBENCH_TOKEN is required for a private feed (legacy alias: MUTANT_WEB_TOKEN)');
   const headers = { authorization: `Bearer ${token}`, accept: 'application/json' };
   const manifestResponse = await fetch(manifestUrl, { headers });
   if (!manifestResponse.ok) throw new Error(`Feed manifest request failed with ${manifestResponse.status}`);

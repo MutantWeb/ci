@@ -1,9 +1,10 @@
 {
   "name": "mutant-web-ci",
   "version": "0.1.1",
-  "description": "Adversarial mutation regression runner for browser-agent action policies",
+  "description": "A2AParkBench adversarial regression runner for browser-agent action policies",
   "type": "module",
   "bin": {
+    "a2aparkbench": "bin/mutant-web.mjs",
     "mutant-web": "bin/mutant-web.mjs"
   },
   "files": [

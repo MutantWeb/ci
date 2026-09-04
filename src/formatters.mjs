@@ -9,7 +9,7 @@ function escapeXml(value) {
 
 export function formatConsole(report) {
   const lines = [
-    `Mutant Web ${report.pack.name}@${report.pack.version}`,
+    `A2AParkBench ${report.pack.name}@${report.pack.version}`,
     ''
   ];
   for (const result of report.results) {
@@ -42,7 +42,7 @@ export function formatJunit(report) {
 
 export function formatGithub(report) {
   const lines = [
-    '## Mutant Web adversarial regression',
+    '## A2AParkBench adversarial regression',
     '',
     `**${report.summary.passed}/${report.summary.total} passed** · pack \`${report.pack.name}@${report.pack.version}\``,
     '',
@@ -53,6 +53,6 @@ export function formatGithub(report) {
     const mark = result.status === 'passed' ? '✅' : '❌';
     lines.push(`| ${mark} | ${result.family} | \`${result.action ?? 'none'}\` | \`${result.expected}\` |`);
   }
-  lines.push('', 'Run locally with the open Mutant Web CLI. Add the workflow badge to make agent-safety regressions visible to contributors.');
+  lines.push('', 'Run locally with the open A2AParkBench CLI. Add the workflow badge to make browser-agent regressions visible to contributors.');
   return `${lines.join('\n')}\n`;
 }
