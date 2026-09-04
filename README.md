@@ -6,6 +6,11 @@ Catch browser-agent action-policy regressions against adversarial interface stat
 The runner is local-first, has no runtime dependencies, and does not upload prompts,
 states, or decisions.
 
+A2AParkBench is created and operated by Sarah van Oorsouw as the benchmark,
+CI/evaluation, failure-corpus, and licensed-feed component of
+[A2APark](https://a2apark.com/). Its canonical public site is
+[bench.a2apark.com](https://bench.a2apark.com/).
+
 ## Run in under a minute
 
 Requires Node 20 or newer.
@@ -30,7 +35,8 @@ Use `--format json`, `--format junit`, or `--format github` for CI integrations.
 
 The published repository and package retain the compatibility identifiers `MutantWeb/ci`,
 `mutant-web-ci`, and `mutant-web`. New package installs also expose the primary
-`a2aparkbench` CLI alias. Existing workflows do not need to change their `uses:` reference.
+`a2aparkbench` CLI alias. `Mutant Web` and `MutantBench` are historical names, not
+the current product identity. Existing workflows do not need to change their `uses:` reference.
 
 ## GitHub Action
 
@@ -72,6 +78,6 @@ curl -X POST https://bench.a2apark.com/api/license/activate \
 The feed validates the exact license instance and product on access. Subscription
 expiry therefore stops future pack downloads without invalidating an already cached pack.
 
-Team access will be described at [A2AParkBench](https://bench.a2apark.com/) once the
-canonical Bench hostname is enabled. Until then, the existing Mutant Web URLs and
-`MUTANT_WEB_TOKEN` remain compatibility aliases for current users.
+Team access is described at the canonical [A2AParkBench](https://bench.a2apark.com/)
+site. Existing Mutant Web URLs and `MUTANT_WEB_TOKEN` remain compatibility aliases
+for current users.
